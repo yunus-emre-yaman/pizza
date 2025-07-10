@@ -1,19 +1,18 @@
-import { useState } from "react";
-import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./pages/Home";
+import OrderForm from "./pages/OrderForm";
+import OrderSuccess from "./pages/OrderSuccess";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="app">
-      <h1>🍕 Pizza Sipariş Uygulaması</h1>
-      <div className="card">
-        <button onClick={() => setCount((prev) => prev + 1)}>
-          Pizza sayısı: {count}
-        </button>
-        <p>Butona tıklayarak pizza sayısını artırabilirsiniz.</p>
-      </div>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/order" component={OrderForm} />
+        <Route path="/success" component={OrderSuccess} />
+      </Switch>
+    </Router>
   );
 }
 

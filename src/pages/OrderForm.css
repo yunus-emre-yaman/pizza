@@ -1,0 +1,86 @@
+.order-form {
+  width: 100%;         
+  max-width: 800px;     
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #FAF7F2;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+
+.order-form h2 {
+  text-align: center;
+  color: #CE2829;
+}
+
+.order-form label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.order-form input[type="text"],
+.order-form select,
+.order-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.order-form textarea {
+  height: 80px;
+}
+
+fieldset {
+  margin: 20px 0;
+  border: none;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+}
+
+button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 12px 24px;
+  background-color: #FDC913;
+  color: black;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.1em;
+}
+
+.order-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-control button {
+  padding: 6px 12px;
+  font-size: 18px;
+  background-color: #FDC913;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.price-box {
+  text-align: right;
+}
