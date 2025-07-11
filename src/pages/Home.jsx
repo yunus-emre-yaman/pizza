@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import pizzaImage from "../assets/pizza-banner.png"; // kendi görselinle değiştir
+import pizzaImage from "../assets/pizza-banner.png";
 
 const Home = () => {
   return (
     <div className="home-container">
-      <h2 className="brand">Teknolojik Yemekler</h2>
+      <h2 className="brand">Teknolojik Yemekler<br />Chef Yunus Emre</h2>
       <div className="slogan-box">
         <h1 className="slogan">KOD ACIKTIRIR<br />PİZZA, DOYURUR</h1>
         <Link to="/order">

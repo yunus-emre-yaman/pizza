@@ -15,8 +15,8 @@ const OrderForm = () => {
   });
 
   const [errors, setErrors] = useState({});
-
   const [quantity, setQuantity] = useState(1);
+
   const basePrice = 175.50;
   const extraPrice = form.toppings.length * 5;
   const totalPrice = (basePrice + extraPrice) * quantity;
@@ -52,8 +52,8 @@ const OrderForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (form.name.length < 3 || !form.size || !form.dough) {
-      alert("Lütfen gerekli alanları doldurun.");
+    if (form.name.length < 3 || !form.size || !form.dough || form.toppings.length < 4) {
+      alert("Lütfen gerekli tüm alanları doldurun. En az 4 malzeme seçilmelidir.");
       return;
     }
 
@@ -63,8 +63,8 @@ const OrderForm = () => {
       hamur: form.dough,
       malzemeler: form.toppings,
       not: form.note,
-      adet: quantity, // ✅ ADIM 3
-      toplamTutar: totalPrice.toFixed(2)
+      adet: quantity,
+      toplamTutar: totalPrice.toFixed(2),
     };
 
     try {
@@ -96,15 +96,39 @@ const OrderForm = () => {
         {errors.name && <p className="error">{errors.name}</p>}
       </label>
 
-      <label>
-        Boyut Seç: <span>*</span>
-        <select name="size" value={form.size} onChange={handleChange}>
-          <option value="">-- Seçiniz --</option>
-          <option value="Küçük">Küçük</option>
-          <option value="Orta">Orta</option>
-          <option value="Büyük">Büyük</option>
-        </select>
-      </label>
+      <div className="form-group">
+        <p>Boyut Seç: <span>*</span></p>
+        <label>
+          <input
+            type="radio"
+            name="size"
+            value="Küçük"
+            checked={form.size === "Küçük"}
+            onChange={handleChange}
+          />
+          Küçük
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="size"
+            value="Orta"
+            checked={form.size === "Orta"}
+            onChange={handleChange}
+          />
+          Orta
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="size"
+            value="Büyük"
+            checked={form.size === "Büyük"}
+            onChange={handleChange}
+          />
+          Büyük
+        </label>
+      </div>
 
       <label>
         Hamur Seç: <span>*</span>
@@ -116,8 +140,8 @@ const OrderForm = () => {
         </select>
       </label>
 
-      <fieldset>
-        <legend>Ek Malzemeler (Max 10):</legend>
+      <div className="form-group">
+        <p>Ek Malzemeler (Min 4 - Max 10):</p>
         {toppingOptions.map((item, i) => (
           <label key={i}>
             <input
@@ -133,7 +157,10 @@ const OrderForm = () => {
             {item}
           </label>
         ))}
-      </fieldset>
+        {form.toppings.length < 4 && (
+          <p className="error">En az 4 malzeme seçmelisiniz.</p>
+        )}
+      </div>
 
       <label>
         Sipariş Notu:
@@ -145,7 +172,6 @@ const OrderForm = () => {
         />
       </label>
 
-      {/* ✅ ADIM 2 – Fiyat kutusu */}
       <div className="order-summary">
         <div className="quantity-control">
           <button
